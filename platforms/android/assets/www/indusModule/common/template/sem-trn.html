@@ -1,0 +1,197 @@
+<style>
+.md-button[disabled] {
+    background-color: #7a78c0 !important;
+}
+.body-background {
+ color: #6d6d72;
+}
+.indus-sem-trn-table{
+	margin: 10px;
+}
+.indus-sem-trn-row{
+	border-top: 1px solid #ddd;
+border: 1px solid #ddd;
+}
+
+
+.main-page-body{
+}
+
+
+
+<!-- sample css : add in style.css -->
+
+</style>
+ <!-- <div class="fix-menu">  -->
+	<md-toolbar class = "md-indus-toolbar-sample">
+		<div class="md-toolbar-tools">
+		  <!-- Back arrow image -->
+			<!-- <md-button class="md-icon-button" aria-label="Favorite"> -->
+			    <!-- <md-icon src="img/icons/favorite.svg" style="color: greenyellow;"></md-icon> -->
+			<!-- </md-button> -->
+				
+			<md-button aria-label="Go Back" style="text-transform:capitalize;" ng-click="goBackSimon()">Back</md-button>
+
+			  <!-- <md-subheader class = "md-indus-toolbar-header">Seminars and Trainings</md-subheader> -->
+			<h4 class = "md-indus-toolbar-header">Seminars and Trainings</h4>
+				
+			<md-button class="md-icon-button" aria-label="Favorite" ng-click="openLeftMenu()">
+				<i class="material-icons">view_headline</i>
+			</md-button>
+		</div>
+	</md-toolbar>
+
+	<md-subheader  class = "md-indus-subheader-sample"  >Search </md-subheader>
+
+<!-- </div>  -->
+
+<md-sidenav md-component-id="left" class="md-sidenav-left">
+    <md-list ng-repeat="item in records">
+        <md-subheader class="md-no-sticky">{{item.name}}</md-subheader>
+        <md-list-item ng-repeat="x in item.SubMenu" ng-click=clickFun(x.id)>
+            <img class="imgSize" src="img/{{x.icon}}">
+            <p>{{x.name}}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+    </md-list>
+    </md-content>
+</md-sidenav>
+
+<md-sidenav md-component-id="right" class="md-sidenav-right">
+	<div ng-controller="profileController as vm" >
+		{{vm.x}}
+		<md-toolbar class="md-indus-right-nav-header" ng-repeat="item2 in vm.profileData">
+			<div style="margin-bottom: 10px"> 
+				<img class="png-icon" src="img/user-photo.png" style="width: 71px; height: 71px;">
+			</div>
+			<span class="md-indus-right-nav-title" style="text-transform: capitalize;">Hi.....{{item2.firstName}} </span>
+		</md-toolbar>
+		<md-list ng-repeat="item1 in vm.profileData">
+			<md-list-item>
+				<h4 class="text-padding"> Name </h4>
+				<h4 class="text-padding">{{item1.firstName}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Indus Id </h4>
+				<h4 class="text-padding">{{item1.memberID}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Joined Date </h4>
+				<h4 class="text-padding">{{item1.memJoinDate}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Contact No </h4>
+				<h4 class="text-padding">{{item1.memCellPhone}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Location </h4>
+				<h4 class="text-padding">{{item1.memCity}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding">Email id </h4>
+				<h4 class="text-padding">{{item1.memEmail | lowercase }}</h4>
+			</md-list-item>
+		</md-list>
+	</div>
+</md-sidenav>
+
+
+
+
+    <form id="semTrnForm" name="semTrnForm" class="main-page-body">
+		<md-card class="sem-trn-top-container-sample">  
+			<div class="md-indus-radio-button-container" ng-init="load()">
+				<input id="radio1" type="radio" name="event" ng-model="value" value="sem" ng-checked="true" ng-change='setSemtrnSrch();'>
+					<label for="radio1"><span><span></span></span>Seminar</label>
+				</input>
+				<input type="radio" ng-model="value" name="event" value="trn" ng-change='setSemtrnSrch()'>
+					<label for="radio2"><span><span></span></span>Training</label>
+				 </input>
+			</div>
+				<fieldset class = "fieldset-indus">
+					<select id="stateSelect" class ="individual-select"
+						ng-model="selectedState" ng-options="o as o for o in states"
+						ng-change="GetCities()" required >
+						<option value="" selected>---Select State---</option>
+					</select>
+				</fieldset>
+
+				<fieldset class = "fieldset-indus">
+					<select	 class ="individual-select" required
+						ng-model="selectedCity" ng-options="o as o for o in cities" >
+						  <option value="" selected>---Select City---</option>
+					</select>
+				</fieldset>
+		</md-card>
+		
+		<md-button class="compose-button-container"  type="submit" ng-disabled="semTrnForm.$invalid" ng-click="GetDetails()">Search</md-button>
+	
+	</form>
+		
+ <md-card class="sem-training-container" >  
+ <div class="table_align" >
+        <div id="semdataview" ng-model ="semdataview" ng-show="semdataview">
+          <table class= "indus-sem-trn-table" ng-repeat = "output in response" style="margin-bottom:5px;">
+            <tbody class="sem-table-body">
+				
+					<tr class ="indus-sem-trn-row">
+						  <td class="table-content-row-heading">Date</td>
+						  <td class="table-content-row-data">{{output.seminarDate}}
+							  <a href="" ng-click="draftShareSemData(output.seminarDate,output.seminarTime,output.seminarType,output.seminarVenue,output.seminarLocation)">
+								<img class ="sem-share-click" ng-src ="img/share.png" alt="Share Sem Data" />
+							  </a>
+						  </td>
+					</tr>
+					<tr class ="indus-sem-trn-row">
+						  <td class="table-content-row-heading">Time </td>
+						  <td class="table-content-row-data">{{output.seminarTime}}</td>
+					</tr>
+					<tr class ="indus-sem-trn-row">
+						  <td class="table-content-row-heading">Topic</td>
+						  <td class="table-content-row-data">{{output.seminarType}}</td>
+					</tr>
+					<tr class ="indus-sem-trn-row">
+						  <td class="table-content-row-heading">Venue</td>
+						  <td class="table-content-row-data">{{output.seminarVenue}}</td>
+					</tr>
+					<tr class ="indus-sem-trn-row">
+						  <td class="table-content-row-heading">Location</td>
+						  <td class="table-content-row-data">{{output.seminarLocation}}</td>
+					</tr>
+					</tbody>
+          </table>
+        </div>
+        <div id="trndataview" ng-model = "trndataview" ng-show="trndataview">
+          <table class= "indus-sem-trn-table" ng-repeat = "output in response" style="margin-bottom:5px;">
+		   <tbody class="sem-table-body">
+				<tr class ="indus-sem-trn-row">
+					  <td class="table-content-row-heading">Date</td>
+					  <td class="table-content-row-data">{{output.trainingDate}}
+						  <a href="" ng-click="draftShareSemData(output.trainingDate,output.trainingTimeFrom,output.trainingTopic,output.trainingVenue,output.trainingLocation)">
+								<img class ="sem-share-click" ng-src ="img/share.png" alt="Share Sem Data" />
+						  </a>
+					  </td>
+				</tr>
+				<tr class ="indus-sem-trn-row">
+					  <td class="table-content-row-heading">Time </td>
+					  <td class="table-content-row-data">{{output.trainingTimeFrom}}</td>
+				</tr>
+				<tr class ="indus-sem-trn-row">
+					  <td class="table-content-row-heading">Topic</td>
+					  <td class="table-content-row-data">{{output.trainingTopic}}</td>
+				</tr>
+				<tr class ="indus-sem-trn-row">
+					  <td class="table-content-row-heading">Venue</td>
+					  <td class="table-content-row-data">{{output.trainingVenue}}</td>
+				</tr>
+				<tr class ="indus-sem-trn-row">
+					  <td class="table-content-row-heading">Location</td>
+					  <td class="table-content-row-data">{{output.trainingLocation}}</td>
+				</tr>
+				</tbody>
+          </table>
+        </div>
+</div>
+ </md-card > 
+
+

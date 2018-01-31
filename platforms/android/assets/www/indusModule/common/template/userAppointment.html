@@ -1,0 +1,174 @@
+<html>
+<style>
+.divTable{
+	display: table;
+	width: 100%;
+}
+
+.divTableRow {
+	display: table-row;
+	height: 50px;
+		text-transform: capitalize;
+	font-size: 14px;
+
+	line-height: 1.4;
+	font-family: 'Open Sans', sans-serif;
+	text-align: start;
+}
+.divTableCell, .divTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+	vertical-align: middle;
+}
+
+
+.divTableRowHeading{
+	display: table-row;
+	background-color:#c11b17;
+	height: 50px;
+
+}
+.divTableOddRow{
+	display: table-row;
+	background-color: #feede5;
+	height: 50px;
+	text-transform: capitalize;
+	font-size: 14px;
+
+	line-height: 1.4;
+	font-family: 'Open Sans', sans-serif;
+	text-align: start;
+}
+
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+
+.md-subheader-content img {
+	float: right;
+	width: 26px;
+}
+</style>
+<!-- <div class="fix-menu"> -->
+	<md-toolbar class = "md-indus-toolbar-sample">
+			<div class="md-toolbar-tools">
+			  <!-- Back arrow image -->
+				<!-- <md-button class="md-icon-button" aria-label="Favorite"> -->
+					<!-- <md-icon src="img/icons/favorite.svg" style="color: greenyellow;"></md-icon> -->
+				<!-- </md-button> -->
+					
+				<md-button aria-label="Go Back" style="text-transform:capitalize;" ng-click="goBackSimon()">Back</md-button>
+
+				<h4 flex md-truncate>Appointment</h4>
+					
+				<md-button class="md-icon-button" aria-label="Favorite" ng-click="openLeftMenu()">
+					<i class="material-icons">view_headline</i>
+				</md-button>
+			</div>
+	</md-toolbar>
+	<md-subheader class = "md-indus-subheader-sample" style="font-size: 15px;" >Pending Appointment</md-subheader>
+<!-- </div> -->
+<md-sidenav md-component-id="left" class="md-sidenav-left">
+    <md-list ng-repeat="item in records">
+        <md-subheader class="md-no-sticky">{{item.name}}</md-subheader>
+        <md-list-item ng-repeat="x in item.SubMenu" ng-click=clickFun(x.id)>
+            <img class="imgSize" src="img/{{x.icon}}">
+            <p>{{x.name}}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+    </md-list>
+    </md-content>
+</md-sidenav>
+
+<md-sidenav md-component-id="right" class="md-sidenav-right">
+	<div ng-controller="profileController as vm" >
+		{{vm.x}}
+		<md-toolbar class="md-indus-right-nav-header" ng-repeat="item2 in vm.profileData">
+			<div style="margin-bottom: 10px">
+				<img class="png-icon" src="img/user-photo.png" style="width: 71px; height: 71px;">
+			</div>
+			<span class="md-indus-right-nav-title" >Hi.....{{item2.firstName}} </span>
+		</md-toolbar>
+		<md-list ng-repeat="item1 in vm.profileData">
+			<md-list-item>
+				<h4 class="text-padding"> Name </h4>
+				<h4 class="text-padding">{{item1.firstName}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Indus Id </h4>
+				<h4 class="text-padding">{{item1.memberID}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Joined Date </h4>
+				<h4 class="text-padding">{{item1.memJoinDate}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Contact No </h4>
+				<h4 class="text-padding">{{item1.memCellPhone}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Location </h4>
+				<h4 class="text-padding">{{item1.memCity}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding">Email id </h4>
+				<h4 class="text-padding">{{item1.memEmail | lowercase }}</h4>
+			</md-list-item>
+		</md-list>
+	</div>
+</md-sidenav>
+
+
+
+<div class="md-indus-circular-loading" >
+	<circle-spinner ng-show="prograssing"></circle-spinner>
+</div>
+
+<div ng-show="IsVisible">
+
+<md-card class="inbox-container"  ng-controller="userAppointmentController as vm">
+	 {{vm.x}}
+	<div class="divTable" ng-repeat="item in vm.appointmentData">
+		<div class="divTableBody">
+			<div class="divTableRow">
+				<div class="divTableCell">Appointment Date</div>
+				<div class="divTableCell" id="appointmentName" >{{item.appointmentDate}}</div>
+				
+			
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">Checkup Type</div>
+				<div class="divTableCell" id="appointmentIndusID">{{item.checkupType}}</div>
+				
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">Checkup Package</div>
+				<div class="divTableCell" id="appointmentJnDte">{{item.packageName}}</div>
+				
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell"> Center Details</div>
+				<div class="divTableCell" id="appointmentCnt">{{item.center}}</div>
+				
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell"> Beneficiary Name</div>
+				<div class="divTableCell" id="appointmentLoc">{{item.beneficiaryName}}</div>
+			</div>	
+
+		</div>
+	</div>
+</md-card>
+</div>
+</html>

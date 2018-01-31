@@ -1,0 +1,40 @@
+<style>
+<!-- .md-button.md-raised[disabled]{ -->
+	<!-- background-color: #7a78c0!important; -->
+<!-- } -->
+
+</style>
+
+<div class="md-indus-circular-loading" >
+	<circle-spinner ng-show="prograssing"></circle-spinner>
+</div>
+
+<div layout="column" layout-fill>                             
+    <md-content layout-padding>
+        <div class="md-whiteframe-z2 padding-top" layout-align="center center">
+            <md-card>
+                <img src="img/logo.png" class="md-card-image" alt="image caption"></img>
+            </md-card>   
+
+            <!-- <div flex layout="row" layout-align="">  // if you dont want to display error line use this style="border-color:#fff" -->
+            <form name="loginForm" data-ng-submit="loginPage">
+                <md-input-container class="md-block md-icon-float">
+                    <label>Enter Username:</label>
+                    <input type="text" required name="indusiteID" data-ng-model="loginName" id="input-box-width"  >
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Enter Password :</label>
+                    <input type="password" required name="indusitePassword" data-ng-model="loginPassword" id="password-box-width"  >
+					
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <md-button class=" md-raised md-primary btn-size" ng-disabled="loginForm.$invalid" type="button" ng-click="signPage()">Sign In</button>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <md-button class=" md-raised md-warn btn-size" type="buttion" ng-click="loginCancelButton()">Cancel</button>
+                </md-input-container>
+            </form>
+            <!-- </div> -->
+        </div>
+    </md-content>
+</div>

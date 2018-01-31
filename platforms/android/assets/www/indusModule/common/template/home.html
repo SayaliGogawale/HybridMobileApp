@@ -1,0 +1,45 @@
+<style>
+.md-indus-home-page{
+	background-color: #670000 !important;
+	<!-- width: 100%; -->
+}
+</style>
+
+<div layout-fill>
+    <div layout="column" layout-align="center center" layout-fill></div>
+    <img style="width:100%" src="./img/xxs.jpg">
+</div>
+<md-toolbar  style="align:center" class = "md-indus-home-page">
+	<div class="md-toolbar-tools" style="justify-content: center">
+		<md-button class="md-icon-button" ng-click="makeAPhoneCall()">
+		<div layout  = "column" layout-align="center center">
+			<img src="./img/call.png"></img>
+			<label class ="bottom-tabbar">Call Us</label>
+		</div>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="getExternalFacebookPage()">
+			<div layout  = "column" layout-align="center center">
+			<img src="./img/fbconnect.png"></img>
+			<label class ="bottom-tabbar">Facebook</label>
+		</div>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="getExternalIndusitesPage()">
+			<div layout  = "column" layout-align="center center">
+			<img src="./img/indus-doll.png"></img>
+			<label class ="bottom-tabbar">Indusites</label>
+		</div>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="loginPage()">
+			<div layout  = "column" layout-align="center center">
+			<img src="./img/login.png" ></img>
+			<label class ="bottom-tabbar">Login</label>
+		</div>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="comboOfferHomePage()">
+			<div layout  = "column" layout-align="center center">
+			<img src="./img/combo-offers.gif" ></img>
+			<label class ="bottom-tabbar">Offers</label>
+		</div>
+		</md-button>
+	</div>
+</md-toolbar>

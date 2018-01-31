@@ -1,0 +1,219 @@
+<html>
+<style>
+.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+	height: 50px;
+	text-transform: capitalize;
+	font-size: 14px;
+
+	line-height: 1.4;
+	font-family: 'Open Sans', sans-serif;
+	text-align: start;
+}
+.divTableRowHeading{
+	display: table-row;
+	background-color:#d3363b;
+	height: 50px;
+	text-transform: capitalize;
+	color:#fff;
+	font-size: 14px;
+	text-align: center;
+}
+.divTableOddRow{
+	display: table-row;
+background-color: #feede5;
+	height: 50px;
+	text-transform: capitalize;
+	font-size: 14px;
+
+	line-height: 1.4;
+	font-family: 'Open Sans', sans-serif;
+	text-align: start;
+}
+.divTableCell, .divTableHead {
+	
+	display: table-cell;
+	padding: 3px 10px;
+	vertical-align: middle;
+	color: #6d6d72;
+	border: 1px solid #f2f2f2;
+	text-align: center;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+
+
+.divIncTableCellHeaing1, .divTableHead {
+	
+	display: table-cell;
+	padding: 3px 10px;
+	vertical-align: middle;
+	border: 1px solid #f2f2f2;
+	color: #fff;
+	
+	font-weight: bold;
+	text-transform:capitalize;
+	font-size: 14px;
+	width: 35%;
+	text-align: center;
+
+}
+.divIncTableCellHeaing2, .divTableHead {
+	display: table-cell;
+	padding: 3px 10px;
+	font-weight: bold;
+	color: #fff;
+	text-transform:capitalize;
+	font-size: 14px;
+	width: 33%;
+	border: 1px solid #f2f2f2;
+	vertical-align: middle;
+	text-align: center;
+}
+.divIncTableCellHeaing3, .divTableHead {
+	
+	display: table-cell;
+	padding: 3px 10px;
+	font-weight: bold;
+	color: #fff;
+	text-transform:capitalize;
+	font-size: 14px;
+	width: 33%;
+	border: 1px solid #f2f2f2;
+	vertical-align: middle;
+	text-align: center;
+}
+
+</style>
+<!-- <div class="fix-menu"> -->
+	<md-toolbar class = "md-indus-toolbar-sample">
+		<div class="md-toolbar-tools">
+		  <!-- Back arrow image -->
+			<!-- <md-button class="md-icon-button" aria-label="Favorite"> -->
+			    <!-- <md-icon src="img/icons/favorite.svg" style="color: greenyellow;"></md-icon> -->
+			<!-- </md-button> -->
+				
+			<md-button aria-label="Go Back" style="text-transform:capitalize;" ng-click="goBackSimon()">Back</md-button>
+
+			<h2 flex md-truncate>Incentive</h2>
+				
+			<md-button class="md-icon-button" aria-label="Favorite" ng-click="openLeftMenu()">
+				<i class="material-icons">view_headline</i>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-subheader class = "md-indus-subheader-sample" style="font-size: 15px;" >Last Fortnight Status</md-subheader>
+<!-- </div>	 -->
+<md-sidenav md-component-id="left" class="md-sidenav-left">
+    <md-list ng-repeat="item in records">
+        <md-subheader class="md-no-sticky">{{item.name}}</md-subheader>
+        <md-list-item ng-repeat="x in item.SubMenu" ng-click=clickFun(x.id)>
+            <img class="imgSize" src="img/{{x.icon}}">
+            <p>{{x.name}}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+    </md-list>
+    </md-content>
+</md-sidenav>
+
+<md-sidenav md-component-id="right" class="md-sidenav-right">
+	<div ng-controller="profileController as vm" >
+		{{vm.x}}
+		<md-toolbar class="md-indus-right-nav-header" ng-repeat="item2 in vm.profileData">
+			<div style="margin-bottom: 10px">
+				<img class="png-icon" src="img/user-photo.png" style="width: 71px; height: 71px;">
+			</div>
+			<span class="md-indus-right-nav-title" >Hi.....{{item2.firstName}} </span>
+		</md-toolbar>
+		<md-list ng-repeat="item1 in vm.profileData">
+			<md-list-item>
+				<h4 class="text-padding"> Name </h4>
+				<h4 class="text-padding">{{item1.firstName}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Indus Id </h4>
+				<h4 class="text-padding">{{item1.memberID}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Joined Date </h4>
+				<h4 class="text-padding">{{item1.memJoinDate}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Contact No </h4>
+				<h4 class="text-padding">{{item1.memCellPhone}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Location </h4>
+				<h4 class="text-padding">{{item1.memCity}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding">Email id </h4>
+				<h4 class="text-padding">{{item1.memEmail | lowercase }}</h4>
+			</md-list-item>
+		</md-list>
+	</div>
+</md-sidenav>
+
+<div class="md-indus-circular-loading" >
+	<circle-spinner ng-show="prograssing"></circle-spinner>
+</div>
+
+<md-card class="renewal-ivp-block" >
+
+	<div class="divTable"  >
+		<div class="divTableBody">
+			<div class="divTableRowHeading">
+				<div class="divIncTableCellHeaing1"></div>
+				<div class="divIncTableCellHeaing2">{{firstColStrtDate}} to {{firstColEndDate}}</div>
+				<div class="divIncTableCellHeaing3">{{secndColStrtDate}} to {{secndColEndDate}}</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">Fresh Incentive</div>
+				<div class="divTableCell" >{{frshincenfirst}}</div>
+				<div class="divTableCell">{{frshincensec}} </div>
+			</div>
+			<div class="divTableOddRow">
+				<div class="divTableCell">Renew Incentive</div>
+				<div class="divTableCell" >{{renwincenfirst}}</div>
+				<div class="divTableCell" >{{renwincensec}}</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">Direct Incentive</div>
+				<div class="divTableCell" >{{directincenfirst}}</div>
+				<div class="divTableCell" >{{directincensec}}</div>
+			</div>
+			<div class="divTableOddRow">
+				<div class="divTableCell">Time Incentive</div>
+				<div class="divTableCell">{{timeincenfirst}}</div>
+				<div class="divTableCell">{{timeincensec}}</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">Total Incentive</div>
+				<div class="divTableCell">{{totincenfirst}}</div>
+				<div class="divTableCell">{{totincensec}}</div>
+			</div>
+			<div class="divTableOddRow">
+				<div class="divTableCell">Net Paid </div>
+				<div class="divTableCell"> {{netincenfirst}}</div>
+				<div class="divTableCell" >{{netincensec}}</div>
+			</div>
+
+		</div>
+	</div>
+</md-card>
+</html>

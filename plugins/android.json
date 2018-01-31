@@ -1,0 +1,55 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-google-analytics": {
+      "PACKAGE_NAME": "com.indus.cord"
+    },
+    "cordova-plugin-fcm": {
+      "PACKAGE_NAME": "com.indus.cord"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.indus.cord"
+    }
+  }
+}

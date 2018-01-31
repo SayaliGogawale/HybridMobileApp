@@ -1,0 +1,24 @@
+<div>
+	<md-toolbar class = "md-indus-toolbar">
+		<div class="md-toolbar-tools">
+		  <!-- Back arrow image -->
+			<!-- <md-button class="md-icon-button" aria-label="Favorite"> -->
+			    <!-- <md-icon src="img/icons/favorite.svg" style="color: greenyellow;"></md-icon> -->
+			<!-- </md-button> -->
+				
+			<md-button aria-label="Go Back" style="text-transform:capitalize;" ng-click="goBackToLoginPage()">Back</md-button>
+
+			<h2 flex md-truncate>{{iframeTitle}}</h2>
+				
+		</div>
+	</md-toolbar>
+
+</div>
+
+<iframe class="youtube-player" 
+		type="text/html" 
+		width="100%" 
+		height="480" 
+		ng-src="{{trustSrc(renewal.src)}}" allowfullscreen 
+		frameborder="0">
+</iframe>

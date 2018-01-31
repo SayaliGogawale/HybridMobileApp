@@ -1,0 +1,117 @@
+<style>
+.md-fab-toolbar.md-left md-fab-trigger {
+    right: 0;
+    background-color: brown;
+}
+.layout-column {width: 29px;}
+
+</style>
+
+<md-toolbar class="md-color" ng-controller="profileController as vm" >
+{{vm.x}}
+    <div class="md-toolbar-tools md-color combo-header-toolbar" ng-repeat="item3 in vm.profileData">
+        <h4 class="md-flex">Welcome {{item3.firstName}}</h4>
+        <span flex></span>
+        <!-- <md-button class="md-icon-button" aria-label="Favorite" ng-click="comboOfferData()"> -->
+		<md-button  aria-label="Favorite" ng-click="comboOfferData()">
+            <img src="img/offer.gif" style="height:36px;">
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Favorite" ng-click="openLeftMenu()">
+            <i class="material-icons">view_headline</i>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-sidenav md-component-id="left" class="md-sidenav-left">
+    <md-list ng-repeat="item in records">
+        <md-subheader class="md-no-sticky">{{item.name}}</md-subheader>
+        <md-list-item ng-repeat="x in item.SubMenu" ng-click=clickFun(x.id)>
+            <img class="imgSize" src="img/{{x.icon}}">
+            <p>{{x.name}}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+    </md-list>
+    </md-content>
+</md-sidenav>
+<md-sidenav md-component-id="right" class="md-sidenav-right">
+<div ng-controller="profileController as vm" >
+{{vm.x}}
+    <!-- <md-toolbar class="md-tall md-accent" ng-repeat="item2 in vm.profileData"> -->
+	<md-toolbar class="md-indus-right-nav-header" ng-repeat="item2 in vm.profileData">
+        <div style="margin-bottom: 10px">
+            <img class="png-icon" src="img/user-photo.png" style="width: 71px; height: 71px;">
+        </div>
+		    <span class="md-indus-right-nav-title" >Hi {{item2.firstName}}</span>
+
+        <!-- <span class="md-title sub-title" style="text-transform: capitalize;">Hi {{item2.firstName}}</span> -->
+    </md-toolbar>
+    <md-list ng-repeat="item1 in vm.profileData">
+        <md-list-item class="sampleClass">
+            <h4 class="text-padding"> Name </h4>
+            <h4 class="text-padding">{{item1.firstName}}</h4>
+        </md-list-item>
+        <md-list-item>
+            <h4 class="text-padding"> Indus Id </h4>
+            <h4 class="text-padding">{{item1.memberID}}</h4>
+        </md-list-item>
+        <md-list-item>
+            <h4 class="text-padding"> Joined Date </h4>
+            <h4 class="text-padding">{{item1.memJoinDate}}</h4>
+        </md-list-item>
+        <md-list-item>
+            <h4 class="text-padding"> Contact No </h4>
+            <h4 class="text-padding">{{item1.memCellPhone}}</h4>
+        </md-list-item>
+        <md-list-item>
+            <h4 class="text-padding"> Location </h4>
+            <h4 class="text-padding">{{item1.memCity}}</h4>
+        </md-list-item>
+        <md-list-item>
+            <h4 class="text-padding">Email id </h4>
+            <h4 class="text-padding">{{item1.memEmail | lowercase }}</h4>
+        </md-list-item>
+    </md-list>
+	</div>
+</md-sidenav>
+<div class="content block">
+    <div class="n-50 card newsale" data-page="newsale" ng-click="newSaleData()">
+        <a class="link"></a>
+    </div>
+    <div class="n-50 card seminar" data-page="sem" ng-click="getTrainingSeminar()">
+        <a class="link"></a>
+    </div>
+    <div class="n-50 card target" data-page="target" ng-click="targetModule()">
+        <a class="link"></a>
+    </div>
+    <div class="n-50 card centerHome" data-page="centers" ng-click="centerLocator()">
+        <a class="link"></a>
+    </div>
+</div>
+
+<md-toolbar  class = "md-indus-toolbar">
+	<div class="md-toolbar-tools">
+		<md-button class="md-icon-button" ng-click="getExternalFacebookPage()">
+		<div layout  = "column" layout-align="center center">
+			<img src="img/fbconnect.png"></img>
+			<label class ="bottom-tabbar">Facebook</label>
+		</div>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="getExternalIPGPage()">
+			<div layout  = "column" layout-align="center center">
+			<img src="img/ipg.png"></img>
+			<label class ="bottom-tabbar">IPG</label>
+		</div>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="populateMyInbox()">
+			<div layout  = "column" layout-align="center center">
+			<img src="img/blog.png"></img>
+			<label class ="bottom-tabbar">Inbox</label>
+		</div>
+		</md-button>
+		<md-button class="md-icon-button" ng-click="showLogoutDialog()">
+			<div layout  = "column" layout-align="center center">
+			<img src="img/logout.png" ></img>
+			<label class ="bottom-tabbar">Logout</label>
+		</div>
+		</md-button>
+	</div>
+</md-toolbar>

@@ -1,0 +1,167 @@
+<style>
+.compose-button-container{background-color: #3d4668!important;
+						  margin: 18px;
+						  margin-bottom:0px!important;
+						  color:white!important;
+						  text-transform:capitalize!important;width: 88%;}
+.md-checkbox-indus{color:#6d6d72!important;text-transform:capitalize;font-size: 17px;margin-left: 12px;}
+ .checkbox-container{margin: 18px;background-color: white;padding:18px}
+ .dropdown-list{font-size: 12px;width: 100%;margin-top: 18px;padding: 12px;}
+
+.sem-table-container {
+    padding: 0px;
+    margin: 0px;
+    border: 0px solid #ddd;
+}
+ 
+ .sem-table-body {
+    font-size: 18px;
+    border: none !important;
+	background-color: #f1f5f7;
+
+}
+.sem-table-body tr td {
+    padding: 7px 3px !important;
+    vertical-align: middle;
+	width: 80%;
+}
+
+ .table-content-row-heading {
+	text-transform: capitalize;
+    float: left;
+    color: #000;
+    clear: both;
+    width: 30%;}
+.table-content-row-data {
+	text-transform: capitalize;
+}
+
+.sem-training-container{
+margin: 18px;background-color: white;
+padding:0px;
+	margin-top:0px!important;
+	text-transform:capitalize!important;
+}
+ 
+ 
+ 
+</style>
+
+<div>
+	<md-toolbar class = "md-indus-toolbar">
+		<div class="md-toolbar-tools">
+		  <!-- Back arrow image -->
+			<!-- <md-button class="md-icon-button" aria-label="Favorite"> -->
+			    <!-- <md-icon src="img/icons/favorite.svg" style="color: greenyellow;"></md-icon> -->
+			<!-- </md-button> -->
+				
+			<md-button aria-label="Go Back">Back</md-button>
+
+			<h2 class="flex">Seminars & Trainings</h2>
+				
+			<md-button class="md-icon-button" aria-label="Favorite" ng-click="openLeftMenu()">
+				<i class="material-icons">view_headline</i>
+			</md-button>
+		</div>
+	</md-toolbar>
+	
+	<md-subheader  class = "md-indus-subheader">Search</md-subheader>
+<div ng-controller="semtrnCntrl as vm" >
+
+    <form id="semTrnForm" name="semTrnForm" >
+
+<!-- ng-app="sem&trnModule"  ng-controller="sem&trnController" -->
+<md-card class="checkbox-container">  
+				<div>
+              <!-- <md-radio-group class="md-checkbox-indus" layout="rows"> -->
+                <input tabindex="1" id="radio1" checked="checked" type="radio" name="event" ng-model="value" value="sem" ng-change='setSemtrnSrch();' >
+                <label for="radio1"><span><span></span></span>Seminar</label>
+                </input>
+      
+                <input type="radio" ng-model="value" name="event" value="trn" ng-change='setSemtrnSrch()'>
+                <label for="radio2"><span><span></span></span>Training</label>
+				</input>
+				</div>
+              <!-- </md-radio-group> -->
+		
+           
+              <fieldset>
+                <select class="dropdown-list" id="stateSelect"
+				ng-model="selectedState" ng-options="o as o for o in states"
+                ng-change="GetCities()">
+                  <option value="" selected>Select State</option>
+                </select>
+              </fieldset>
+         		
+              <fieldset>
+                <select	class="dropdown-list" ng-model="selectedCity" ng-options="o as o for o in cities">
+                  <option value="" selected>Select City</option>
+                </select>
+              </fieldset>
+			  
+</md-card>
+
+ <md-button class="compose-button-container" type="submit"  ng-click="GetDetails()">Search</md-button>
+    </form>
+ <!-- <div ng-show="isSemContainerVisible"> -->
+ <md-card class="sem-training-container" >  
+ {{vm.x}}
+        <div class="sem-table-container" id="semdataview" ng-model ="semdataview" ng-show="semdataview">
+			<!-- item in vm.centersListData 	output in response -->
+				<table  ng-repeat = "output in vm.centersListData" style="margin-bottom:5px;">
+				<tbody class="sem-table-body">
+				
+					<tr>
+						  <td class="table-content-row-heading">Date</td>
+						  <td class="table-content-row-data">{{output.seminarDate}}</td>
+					</tr>
+					<tr>
+						  <td class="table-content-row-heading">Time </td>
+						  <td class="table-content-row-data">{{output.seminarTime}}</td>
+					</tr>
+					<tr>
+						  <td class="table-content-row-heading">Topic</td>
+						  <td class="table-content-row-data">{{output.seminarType}}</td>
+					</tr>
+					<tr>
+						  <td class="table-content-row-heading">Venue</td>
+						  <td class="table-content-row-data">{{output.seminarVenue}}</td>
+					</tr>
+					<tr>
+						  <td class="table-content-row-heading">Location</td>
+						  <td class="table-content-row-data">{{output.seminarLocation}}</td>
+					</tr>
+					</tbody>
+				</table>
+		
+        </div>
+        <div id="trndataview" ng-model = "trndataview" ng-show="trndataview">
+           <table ng-repeat = "output in response" style="margin-bottom:5px;">
+				<tr>
+					  <td class="table-content-row-heading">Date</td>
+					  <td class="table-content-row-data">{{output.trainingDate}}</td>
+				</tr>
+				<tr>
+					  <td class="table-content-row-heading">Time </td>
+					  <td class="table-content-row-data">{{output.trainingTimeFrom}}</td>
+				</tr>
+				<tr>
+					  <td class="table-content-row-heading">Topic</td>
+					  <td class="table-content-row-data">{{output.trainingTopic}}</td>
+				</tr>
+				<tr>
+					  <td class="table-content-row-heading">Venue</td>
+					  <td class="table-content-row-data">{{output.trainingVenue}}</td>
+				</tr>
+				<tr>
+					  <td class="table-content-row-heading">Location</td>
+					  <td class="table-content-row-data">{{output.trainingLocation}}</td>
+				</tr>
+          </table>
+        </div>    
+		</md-card>  
+		 <!-- </div>  -->
+ 
+	</div>
+ 
+</div>

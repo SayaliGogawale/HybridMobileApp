@@ -1,0 +1,128 @@
+
+<style>
+<!-- md-input-container .md-errors-spacer{min-height: 0px;} -->
+	<!-- .compose-button-container{background-color: #3d4668!important;margin: 18px;color:white;text-transform:capitalize} -->
+.grey-background-color{background-color: #eaecef!important}
+<!-- .md-indus-toolbar{background-color: #670000!important} -->
+<!-- .md-indus-subheader{background-color: #d3363b!important;color:white;text-transform:capitalize} -->
+<!-- .md-indus-textarea-container{ -->
+	<!-- padding : 10px; -->
+	<!-- font-size : 12.5px; -->
+	<!-- margin: 20px; -->
+	<!-- min-height: 64px; -->
+<!-- } -->
+
+<!-- .md-indus-feedback-container{ -->
+	<!-- min-height: 64px; -->
+	<!-- margin: 18px; -->
+<!-- } -->
+.md-button[disabled] {
+    background-color: #7a78c0 !important;
+}
+
+</style>
+<!-- <div class="fix-menu"> -->
+	<md-toolbar class = "md-indus-toolbar-sample">
+			<div class="md-toolbar-tools">
+			  <!-- Back arrow image -->
+				<!-- <md-button class="md-icon-button" aria-label="Favorite"> -->
+					<!-- <md-icon src="img/icons/favorite.svg" style="color: greenyellow;"></md-icon> -->
+				<!-- </md-button> -->
+					
+				<md-button aria-label="Go Back" style="text-transform:capitalize;" ng-click="goBackSimon()">Back</md-button>
+
+				<h2 flex md-truncate>Feedback</h2>
+					
+				<md-button class="md-icon-button" aria-label="Favorite" ng-click="openLeftMenu()">
+					<i class="material-icons">view_headline</i>
+				</md-button>
+			</div>
+	</md-toolbar>
+	<md-subheader class = "md-indus-subheader-sample" >Let's Share With Us</md-subheader>
+<!-- </div> -->
+
+<md-sidenav md-component-id="left" class="md-sidenav-left">
+    <md-list ng-repeat="item in records">
+        <md-subheader class="md-no-sticky">{{item.name}}</md-subheader>
+        <md-list-item ng-repeat="x in item.SubMenu" ng-click=clickFun(x.id)>
+            <img class="imgSize" src="img/{{x.icon}}">
+            <p>{{x.name}}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+    </md-list>
+    </md-content>
+</md-sidenav>
+
+<md-sidenav md-component-id="right" class="md-sidenav-right">
+	<div ng-controller="profileController as vm" >
+		{{vm.x}}
+		<md-toolbar class="md-indus-right-nav-header" ng-repeat="item2 in vm.profileData">
+			<div style="margin-bottom: 10px">
+				<img class="png-icon" src="img/user-photo.png" style="width: 71px; height: 71px;">
+			</div>
+			<span class="md-indus-right-nav-title" >Hi.....{{item2.firstName}} </span>
+		</md-toolbar>
+		<md-list ng-repeat="item1 in vm.profileData">
+			<md-list-item>
+				<h4 class="text-padding"> Name </h4>
+				<h4 class="text-padding">{{item1.firstName}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Indus Id </h4>
+				<h4 class="text-padding">{{item1.memberID}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Joined Date </h4>
+				<h4 class="text-padding">{{item1.memJoinDate}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Contact No </h4>
+				<h4 class="text-padding">{{item1.memCellPhone}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Location </h4>
+				<h4 class="text-padding">{{item1.memCity}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding">Email id </h4>
+				<h4 class="text-padding">{{item1.memEmail | lowercase }}</h4>
+			</md-list-item>
+		</md-list>
+	</div>
+</md-sidenav>
+
+
+
+<form name = "feedbackFormValidation" id="feedbackFormValidation"  method="post" ng-submit="processFeedbackForm(feedbackFormValidation.$valid)">
+	<div layout="column" >
+
+	  <md-card class="md-indus-feedback-container">
+		
+		<md-input-container class="md-hide">
+			<input id="feedtype" name="feedtype" type="hidden" ng-model="formData.feedtype">
+		</md-input-container>
+		
+		<md-input-container class="md-hide">
+			<input id="feedmember" name="feedmember" type="hidden" ng-model="formData.feedmember">
+		</md-input-container>
+
+		<!-- <md-input-container  > -->
+		
+			<textarea class="md-indus-textarea-container" placeholder="Please enter your comments"
+					id="feed" name="feed" ng-model="formData.feed"
+					ng-trim="false" ng-pattern="/^[A-Za-z0-9_@.,]*$/"></textarea>
+			<span class="error-ng-msg"   ng-show="feedbackFormValidation.feed.$error.pattern">Special Characters are not allowed</span>
+		 <!-- <p ng-show="feedbackFormValidation.feed.$invalid && !feedbackFormValidation.feed.$pristine" >You name is required.</p> -->
+		
+			<!-- </md-input-container> -->
+		
+	  </md-card>
+	  
+	  <md-button type="submit" class="compose-button-container" ng-disabled="!formData.feed">Submit</md-button>
+
+	</div>
+</form>
+
+
+
+

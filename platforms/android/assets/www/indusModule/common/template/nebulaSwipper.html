@@ -1,0 +1,86 @@
+<body ng-controller="AppController">
+    <section class="main-content">
+<!-- Demo styles -->
+		<style>
+		section.swipe {
+		  background: #eee;
+		  width: 100%;
+		  margin: 0 auto;
+		  height: 340px;
+		  padding: 20px;
+		}
+		.swiper-container {
+			<!-- width: 500px; -->
+			height: 300px;
+		}
+		.swiper-slide {
+			text-align: center;
+			font-size: 18px;
+			background: #fff;
+			/* Center slide text vertically */
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+		}
+		</style>
+
+	  <h1>3D Cube Effect</h1>
+	  <section class="swipe">
+		<swiper
+		effect="cube"
+		grab-cursor="true"
+		cube="{
+				shadow: true,
+				slideShadows: true,
+				shadowOffset: 20,
+				shadowScale: 0.94
+			}"
+		style="width: 300px; height: 300px; position: absolute; left: 50%; margin-left: -150px;"
+		>
+		  <slides>
+			<slide ng-repeat="slide in slides track by $index">
+				<img ng-src="{{slide}}"/>
+			</slide>
+		  </slides>
+		  <pagination></pagination>
+		</swiper>
+	  </section>
+
+	  <h1>ng-repeat dynamic</h1>
+	  <section class="swipe">
+		<swiper effect="coverflow">
+		  <slides>
+			<slide ng-repeat="slide in slides track by $index">
+				<img ng-src="{{slide}}"/>
+			</slide>
+		  </slides>
+		  <prev></prev>
+		  <next></next>
+		  <pagination></pagination>
+		</swiper>
+	  </section>
+	  
+
+	  <h1>ng-repeat</h1>
+	  <section class="swipe">
+		<swiper effect="coverflow">
+		  <slides>
+			<slide ng-repeat="slide in slides track by $index">{{slide}}</slide>
+		  </slides>
+		  <prev></prev>
+		  <next></next>
+		  <pagination></pagination>
+		</swiper>
+	  </section>
+	  
+	</section>
+</body>

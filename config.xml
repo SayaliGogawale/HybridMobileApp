@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.indus.cord" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Indusites</name>
+    <description>
+        Indus Health Plus is evolving it’s digital presence, introduces exclusive 
+		app for convenience of Indusites.Know the state of your own business and updates on Indusites app
+    </description>
+    <author email="ecomm.indus@gmail.com" href="http://www.indusites.com/">
+        Indus Health Plus Ecommerce Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <icon density="ldpi" src="res/appIcon.png" />
+        <icon density="mdpi" src="res/appIcon.png" />
+        <icon density="hdpi" src="res/appIcon.png" />
+        <icon density="xhdpi" src="res/appIcon.png" />
+        <splash density="ldpi" src="res/screen.png" />
+        <splash density="mdpi" src="res/screen.png" />
+        <splash density="hdpi" src="res/screen.png" />
+        <splash density="xhdpi" src="res/screen.png" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="FadeSplashScreenDuration" value="0000" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="ShowSplashScreen" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="orientation" value="portrait" />
+    <preference name="SplashMaintainAspectRatio" value="false" />
+    <preference name="loadUrlTimeoutValue" value="700000" />
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.Device" />
+    </feature>
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-device" spec="^1.1.7" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
+    <plugin name="cordova-plugin-network-information" spec="^1.3.4" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
+    <plugin name="cordova-plugin-file" spec="^5.0.0" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
+    <plugin name="cordova-plugin-geolocation" spec="^3.0.0" />
+    <plugin name="cordova-plugin-media" spec="^4.0.0" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.3.0" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="^5.2.1" />
+    <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
+    <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
+    <engine name="android" spec="^6.3.0" />
+</widget>

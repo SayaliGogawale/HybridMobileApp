@@ -1,0 +1,81 @@
+<md-toolbar class = "md-indus-toolbar">
+		<div class="md-toolbar-tools">
+		  <!-- Back arrow image -->
+			<!-- <md-button class="md-icon-button" aria-label="Favorite"> -->
+			    <!-- <md-icon src="img/icons/favorite.svg" style="color: greenyellow;"></md-icon> -->
+			<!-- </md-button> -->
+				
+			<md-button aria-label="Go Back" style="text-transform:capitalize;" ng-click="goBackSimon()">Back</md-button>
+
+			<h2 flex md-truncate>Event</h2>
+				
+			<md-button class="md-icon-button" aria-label="Favorite" ng-click="openLeftMenu()">
+				<i class="material-icons">view_headline</i>
+			</md-button>
+		</div>
+</md-toolbar>
+
+<md-sidenav md-component-id="left" class="md-sidenav-left">
+    <md-list ng-repeat="item in records">
+        <md-subheader class="md-no-sticky">{{item.name}}</md-subheader>
+        <md-list-item ng-repeat="x in item.SubMenu" ng-click=clickFun(x.id)>
+            <img class="imgSize" src="img/{{x.icon}}">
+            <p>{{x.name}}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+    </md-list>
+    </md-content>
+</md-sidenav>
+
+<md-sidenav md-component-id="right" class="md-sidenav-right">
+	<div ng-controller="profileController as vm" >
+		{{vm.x}}
+		<md-toolbar class="md-tall md-accent" ng-repeat="item2 in vm.profileData">
+			<div>
+				<img class="png-icon" src="img/img.jpg" style="width: 71px; height: 71px;">
+			</div>
+			<span class="md-title sub-title" style="text-transform: capitalize;">Hi.....{{item2.firstName}} </span>
+		</md-toolbar>
+		<md-list ng-repeat="item1 in vm.profileData">
+			<md-list-item>
+				<h4 class="text-padding"> Name </h4>
+				<h4 class="text-padding">{{item1.firstName}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Indus Id </h4>
+				<h4 class="text-padding">{{item1.memberID}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Joined Date </h4>
+				<h4 class="text-padding">{{item1.memJoinDate}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Contact No </h4>
+				<h4 class="text-padding">{{item1.memCellPhone}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Location </h4>
+				<h4 class="text-padding">{{item1.memCity}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding">Email id </h4>
+				<h4 class="text-padding">{{item1.memEmail | lowercase }}</h4>
+			</md-list-item>
+		</md-list>
+	</div>
+</md-sidenav>
+
+<md-subheader class = "md-indus-subheader">Latest Happenings</md-subheader>
+
+      
+
+    <md-card layout="column" layout-align="center center" style="padding-bottom: 10px" >
+      <jk-carousel
+        data="dataArray"
+        item-template-url="'indusModule/common/template/item-template.html'"
+        max-width="800" 
+        max-height="500" >
+        </jk-carousel>
+    </md-card>
+
+

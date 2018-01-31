@@ -1,0 +1,215 @@
+<html>
+	<style>
+.divTable{
+	display: table;
+	width: 100%;
+}
+
+.divTableRow {
+	display: table-row;
+}
+
+.divTableCell, .divTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+	color: #6d6d72;
+	text-transform:capitalize;
+	font-size: 14px;
+	border: 1px solid #f2f2f2;
+	text-align: center;
+}
+.divTableHeading {
+text-align: center;
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+	font-size: 14px;
+	color: #6d6d72;
+	text-transform:capitalize;
+	border: 1px solid #f2f2f2;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+	font-family: 'Open Sans', sans-serif;
+	color: #232323;
+	font-size: 14px;
+	line-height: 1.4;
+	-webkit-text-size-adjust: 100%;
+	font-weight: 400;
+}
+
+.divTableCell input{width:95%}
+
+
+.divTableCellHeading1, .divTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+	font-weight: bold;
+	color: #6d6d72;
+	text-transform:capitalize;
+	font-size: 14px;width: 30%;
+	border: 1px solid #f2f2f2;
+	text-align: center;
+}
+.divTableCellHeading2, .divTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	text-align: center;
+	padding: 3px 10px;
+	font-weight: bold;
+	color: #6d6d72;
+	text-transform:capitalize;
+	font-size: 14px;
+	width: 33%;
+	border: 1px solid #f2f2f2;
+}
+.divTableCellHeading3, .divTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	text-align: center;
+	padding: 3px 10px;
+	font-weight: bold;
+	color: #6d6d72;
+	text-transform:capitalize;
+	font-size: 14px;
+	width: 33%;
+	border: 1px solid #f2f2f2;
+}
+
+
+
+	</style>
+<!-- <div class="fix-menu"> -->
+	<md-toolbar class = "md-indus-toolbar-sample">
+				<div class="md-toolbar-tools">
+				  <!-- Back arrow image -->
+					<!-- <md-button class="md-icon-button" aria-label="Favorite"> -->
+						<!-- <md-icon src="img/icons/favorite.svg" style="color: greenyellow;"></md-icon> -->
+					<!-- </md-button> -->
+						
+					<md-button aria-label="Go Back" style="text-transform:capitalize;" ng-click="goBackSimon()">Back</md-button>
+
+					<h2 flex md-truncate>Incentive Calculator </h2>
+						
+					<md-button class="md-icon-button" aria-label="Favorite" ng-click="openLeftMenu()">
+						<i class="material-icons">view_headline</i>
+					</md-button>
+				</div>
+	</md-toolbar>
+
+	<md-subheader  class = "md-indus-subheader-sample">Enter the IVP's </md-subheader>
+	
+<!-- </div> -->
+		
+<md-sidenav md-component-id="left" class="md-sidenav-left">
+    <md-list ng-repeat="item in records">
+        <md-subheader class="md-no-sticky">{{item.name}}</md-subheader>
+        <md-list-item ng-repeat="x in item.SubMenu" ng-click=clickFun(x.id)>
+            <img class="imgSize" src="img/{{x.icon}}">
+            <p>{{x.name}}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+    </md-list>
+
+</md-sidenav>
+
+<md-sidenav md-component-id="right" class="md-sidenav-right">
+	<div ng-controller="profileController as vm" >
+		{{vm.x}}
+		<md-toolbar class="md-indus-right-nav-header" ng-repeat="item2 in vm.profileData">
+			<div style="margin-bottom: 10px">
+				<img class="png-icon" src="img/user-photo.png" style="width: 71px; height: 71px;">
+			</div>
+			<span class="md-indus-right-nav-title" >Hi.....{{item2.firstName}} </span>
+		</md-toolbar>
+		<md-list ng-repeat="item1 in vm.profileData">
+			<md-list-item>
+				<h4 class="text-padding"> Name </h4>
+				<h4 class="text-padding">{{item1.firstName}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Indus Id </h4>
+				<h4 class="text-padding">{{item1.memberID}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Joined Date </h4>
+				<h4 class="text-padding">{{item1.memJoinDate}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Contact No </h4>
+				<h4 class="text-padding">{{item1.memCellPhone}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Location </h4>
+				<h4 class="text-padding">{{item1.memCity}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding">Email id </h4>
+				<h4 class="text-padding">{{item1.memEmail | lowercase }}</h4>
+			</md-list-item>
+		</md-list>
+	</div>
+</md-sidenav>
+
+
+	
+		
+		<md-card class="ivp-calculaor"  ng-controller="incentiveCalculator as vm">
+		{{vm.x}}
+		<div class="divTableHeading">Incentive  Calculator</div>
+			<div class="divTable" >
+				<div class="divTableBody">
+					<div class="divTableRow">
+						<div class="divTableCellHeading1"></div>
+						<div class="divTableCellHeading2">Left</div>
+						<div class="divTableCellHeading3">Right</div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell">IVP's</div>
+						<div class="divTableCell"><input type="text" ng-model="editIncentiveIVPLeft" placeholder="Enter data" valid-number/></div>
+						<div class="divTableCell"><input type="text" ng-model="editIncentiveIVPRight" placeholder="Enter data" valid-number/></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell">Step</div>
+						<div class="divTableCell"><input type="text" ng-model="editIncentiveStepLeft" placeholder="Enter data" valid-number/></div>
+						<div class="divTableCell"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell"></div>
+						<div class="divTableCell"><input type="submit" value="Calculator" ng-click="ivpCalculation()"/></div>
+						<div class="divTableCell"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell">Adjusted IVP's</div>
+						<div class="divTableCell" id="dispIncentiveAdjustedIVPLeft"></div>
+						<div class="divTableCell" id="dispIncentiveAdjustedIVPRight"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell">Closing IVP's</div>
+						<div class="divTableCell" id="dispIncentiveClosingLeft"></div>
+						<div class="divTableCell" id="dispIncentiveClosingRight"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell">Incentive</div>
+						<div class="divTableCell" id="dispIncenLeft"></div>
+						<div class="divTableCell" id="dispIncenRight"></div>
+					</div>
+					<div class="divTableRow">
+						<div class="divTableCell">Next Step</div>
+						<div class="divTableCell" id="dispIncentiveNextStepLeft"></div>
+						<div class="divTableCell" id="dispIncentiveNextStepRight"></div>
+					</div>
+				</div>
+			</div>
+		</md-card>
+		
+		
+
+</html>

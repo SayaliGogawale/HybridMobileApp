@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "926295382622",
+    "firebase_url": "https://indusites-90c5d.firebaseio.com",
+    "project_id": "indusites-90c5d",
+    "storage_bucket": "indusites-90c5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:926295382622:android:e2b8f1c733ea64b2",
+        "android_client_info": {
+          "package_name": "com.indus.cord"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "926295382622-1srbroev45udo986mra8k4798i9ik4se.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlQYXyK_un3_2A_XLvgICCvD5W61gyktU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,219 @@
+<html>
+<style>
+.divTable{
+	display: table;
+	width: 100%;
+}
+
+<!-- .divTableCell:nth-last-child(2){width:100%; border-collapse: collapse; display:;} -->
+.divTableRow {
+	display: table-row;
+	height: 50px;
+		text-transform: capitalize;
+	font-size: 14px;
+
+	line-height: 1.4;
+	font-family: 'Open Sans', sans-serif;
+	text-align: start;
+}
+.divTableRowHeading{
+	display: table-row;
+	background-color:#d3363b;
+	height: 50px;
+	text-align: center;
+
+}
+.divTableOddRow{
+	display: table-row;
+	background-color: #feede5;
+	height: 50px;
+	text-transform: capitalize;
+	font-size: 14px;
+
+	line-height: 1.4;
+	font-family: 'Open Sans', sans-serif;
+	text-align: start;
+}
+.divTableCell, .divTableHead {
+	display: table-cell;
+	padding: 3px 10px;
+	vertical-align: middle;
+	border: 1px solid #f2f2f2;
+	color: #6d6d72;
+	<!-- text-align: center; -->
+}
+.divTableMyIvpCellHeading, .divTableHead {
+   	border: 1px solid #f2f2f2;
+    display: table-cell;
+    padding: 3px 10px;
+    vertical-align: middle;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #fff;
+    font-size: 14px;
+	<!-- text-align: center; -->
+}
+
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+	text-align: center;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+
+<!-- .md-subheader-content img { -->
+	<!-- float: right; -->
+	<!-- width: 26px; -->
+<!-- } -->
+
+
+
+</style>
+<!-- <div class="fix-menu"> -->
+	<md-toolbar class = "md-indus-toolbar-sample">
+		<div class="md-toolbar-tools">
+		  <!-- Back arrow image -->
+			<!-- <md-button class="md-icon-button" aria-label="Favorite"> -->
+			    <!-- <md-icon src="img/icons/favorite.svg" style="color: greenyellow;"></md-icon> -->
+			<!-- </md-button> -->
+				
+			<md-button aria-label="Go Back" style="text-transform:capitalize;" ng-click="goBackSimon()">Back</md-button>
+
+			<h2 flex md-truncate>My IVPs</h2>
+				
+			<md-button class="md-icon-button" aria-label="Favorite" ng-click="openLeftMenu()">
+				<i class="material-icons">view_headline</i>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-subheader class = "md-indus-subheader-sample" style="font-size: 15px;" >Fortnight Status <a href="" ng-click="myIVPCalc()"> <img src ="img/incencalc.png" alt="My IVP Calc"/></a></md-subheader>
+<!-- </div> -->
+	
+<md-sidenav md-component-id="left" class="md-sidenav-left">
+    <md-list ng-repeat="item in records">
+        <md-subheader class="md-no-sticky">{{item.name}}</md-subheader>
+        <md-list-item ng-repeat="x in item.SubMenu" ng-click=clickFun(x.id)>
+            <img class="imgSize" src="img/{{x.icon}}">
+            <p>{{x.name}}</p>
+        </md-list-item>
+        <md-divider></md-divider>
+    </md-list>
+    </md-content>
+</md-sidenav>
+
+<md-sidenav md-component-id="right" class="md-sidenav-right">
+	<div ng-controller="profileController as vm" >
+		{{vm.x}}
+		<md-toolbar class="md-indus-right-nav-header" ng-repeat="item2 in vm.profileData">
+			<div style="margin-bottom: 10px">
+				<img class="png-icon" src="img/user-photo.png" style="width: 71px; height: 71px;">
+			</div>
+			<span class="md-indus-right-nav-title" >Hi.....{{item2.firstName}} </span>
+		</md-toolbar>
+		<md-list ng-repeat="item1 in vm.profileData">
+			<md-list-item>
+				<h4 class="text-padding"> Name </h4>
+				<h4 class="text-padding">{{item1.firstName}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Indus Id </h4>
+				<h4 class="text-padding">{{item1.memberID}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Joined Date </h4>
+				<h4 class="text-padding">{{item1.memJoinDate}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Contact No </h4>
+				<h4 class="text-padding">{{item1.memCellPhone}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding"> Location </h4>
+				<h4 class="text-padding">{{item1.memCity}}</h4>
+			</md-list-item>
+			<md-list-item>
+				<h4 class="text-padding">Email id </h4>
+				<h4 class="text-padding">{{item1.memEmail | lowercase }}</h4>
+			</md-list-item>
+		</md-list>
+	</div>
+</md-sidenav>
+
+
+
+  <!-- <div flex layout="column", layout-align="center center" ng-show="isLoading"> -->
+    <!-- <md-progress-circular md-diameter="{{diameter}}" ></md-progress-circular> -->
+  <!-- </div> -->
+	
+	
+<div class="md-indus-circular-loading" >
+	<circle-spinner ng-show="prograssing"></circle-spinner>
+</div>
+	
+<md-card class="my-ivp-block" ng-controller="myIVPController as vm">
+ {{vm.x}}
+	<div class="divTable" ng-repeat="item in vm.myIvp">
+		<div class="divTableBody">
+			<div class="divTableRowHeading">
+				<div class="divTableMyIvpCellHeading"></div>
+				<div class="divTableMyIvpCellHeading">Left</div>
+				<div class="divTableMyIvpCellHeading">Right</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">Last Closed Fortnight</div>
+				<div class="divTableCell" id="lstClsdFrtngLf" >{{item.lastClosedFnFrom}}</div>
+				<div class="divTableCell" id="lstClsdFrtngRg">{{item.lastClosedFnTo}}</div>
+			</div>
+			<div class="divTableOddRow">
+				<div class="divTableCell">Last Closed Fortnight Addition</div>
+				<div class="divTableCell" id="LstClsdFrngAdLf">{{item.lastClosedFNAddnlLeftIVP}}(<span >{{item.totalSaleCountLeft0}}</span>)</div>
+				<div class="divTableCell" id="LstClsdFrngAdRg">{{item.lastClosedFNAddnlRightIVP}}(<span>{{item.totalSaleCountRight0}}</span>)</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">Begin Step</div>
+				<div class="divTableCell" id="beginLf">{{item.beginStepNextFN}}</div>
+				<div class="divTableCell" id="beginRg">-</div>
+			</div>
+			<div class="divTableOddRow">
+				<div class="divTableCell">Last Closed Fortnight Closing Balance</div>
+				<div class="divTableCell" id="lstClsdFrngClsinBalLf">{{item.lastClosedFNClosingLeft}}</div>
+				<div class="divTableCell" id="lstClsdFrngClsinBalRg">{{item.lastClosedFNClosingRight}}</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">Tentative Add <span id="firstTenAddFrm">{{item.firsttentAddnlIVPFrom}}</span> to <span id="firstTenAddTo">{{item.firsttentAddnlIVPTo}}</span></div>
+				<div class="divTableCell" id="tenAddFrstFrngLf">{{item.firsttentAddnlIVPLeft}}(<span>{{item.totalSaleCountLeft1}}</span>)</div>
+				<div class="divTableCell" id="tenAddFrstFrngRg">{{item.firsttentAddnlIVPRight}}(<span>{{item.totalSaleCountRight1}}</span>)</div>
+			</div>
+			<div class="divTableOddRow">
+				<div class="divTableCell">Tentative Add <span id="secTenAddFrm">{{item.secondttentAddnlIVPFrom}}</span> to <span id="secTenAddTo">{{item.secondtentAddnlIVPTo}}</span></div>
+				<div class="divTableCell" id="tenAddSndFrngLf">{{item.secondtentAddnlIVPLeft}}(<span>{{item.totalSaleCountLeft2}}</span>)</div>
+				<div class="divTableCell" id="tenAddSndFrngRg">{{item.secondtentAddnlIVPRight}}(<span>{{item.totalSaleCountRight2}}</span>)</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">Tentative Add <span id="thirdTenAddFrm">{{item.thirdttentAddnlIVPFrom}}</span> to <span id="thirdTenAddTo">{{item.thirdtentAddnlIVPTo}}</span></div>
+				<div class="divTableCell" id="tenAddThrdFrngLf">{{item.thirdtentAddnlIVPLeft}}(<span>{{item.totalSaleCountLeft3}}</span>)</div>
+				<div class="divTableCell" id="tenAddThrdFrngRg">{{item.thirdtentAddnlIVPRight}}(<span>{{item.totalSaleCountRight3}}</span>)</div>
+			</div>
+			<div class="divTableOddRow">
+				<div class="divTableCell">*As Updated On</div>
+				<div class="divTableCell" id="asUpdatedOnDateTime">{{item.lastupdatedDated}}</div>
+				<!-- <div class="divTableCell" id="rensecondTAIVPRT"></div> -->
+			</div>
+			
+
+		</div>
+	</div>
+</md-card>
+
+</html>
