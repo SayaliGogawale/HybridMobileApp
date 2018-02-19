@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#E32636	</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="lightGray">#e0e0e0</color>
+    <color name="ivory">#FFFFF0</color>
+    <color name="brand_color">#B31B1B</color>
+    <color name="white">#FFFFFF	</color>
+    <color name="branding_color_primary_text_disabled">#646464</color>
+    <color name="wp_white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="blue_de_france">#318CE7</color>
+
+
+</resources>

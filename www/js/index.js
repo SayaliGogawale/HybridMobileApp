@@ -64,27 +64,34 @@ var app = {
 		
 			FCMPlugin.getToken(
 			  function (token) {
-				  console.log("FCM Token: " + token);
-					  // cordova.plugins.email.open({
-						  // to: 'indus.sayalii@gmail.com',
-						  // subject: 'FCM token',
-						  // body: token
-					  // });
+				  window.localStorage.setItem("device_token", token);
+				  console.log("FCM Device Token : " + token);
 			  },
 			  function (err) {
 				  console.log("FCM Error: " + 'error retrieving token: ' + err);
 			  }
 			);
 			
+			FCMPlugin.onTokenRefresh(
+			  function (refreshDeviceToken) {
+				  window.localStorage.setItem("refresh_device_token", refreshDeviceToken);
+				  console.log("FCM Refresh Device Token : " + refreshDeviceToken);
+				  alert(refreshDeviceToken);
+			  },
+			  function (err) {
+				  console.log("FCM Error: " + 'error retrieving refresh token: ' + err);
+			  }
+			);
+			
 			FCMPlugin.onNotification(
-			  function (data) {
+			  function (data,$mdDialog) {
 				  console.log("FCM Notify: " + JSON.stringify(data));
 				  if (data.wasTapped) {
 					  //Notification was received on device tray and tapped by the user. 
 					  console.log("FCM Wrapped Notify: " + JSON.stringify(data));
 				  } else {
 					  //Notification was received in foreground. Maybe the user needs to be notified. 
-					  console.log("FCM Notify: " + JSON.stringify(data));
+					alert(data.title);
 				  }
 			  },
 			  function (msg) {

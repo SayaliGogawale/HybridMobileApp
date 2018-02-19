@@ -1,4 +1,6 @@
 app.controller("homeController", function($scope, $state) {
+	// var deviceWindow = window.localStorage.getItem("device_token");
+	// console.log("FCM WINDOW : " + deviceWindow);
     $scope.loginPage = function() {
 		console.log("HomePage" );
         $state.go("login");
